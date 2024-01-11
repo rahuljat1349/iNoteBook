@@ -1,18 +1,20 @@
-import { useState,useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Contact from "./components/Contact";
+import Home from "./components/Home";
 
 function App() {
-  const [count, setCount] = useState(0);
+  return (
+    <>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
+};
 
-  useEffect(() => {
-    setTimeout(() => {
-      setCount((count) => count + 1);
-    }, 1000);
-  });
-
-  return <h1>I have rendered {count} times!</h1>;
-}
-
-export default App
+export default App;
