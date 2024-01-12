@@ -5,7 +5,6 @@ import Home from "./components/Home";
 import About from "./components/About";
 import Logout from "./components/User/Logout";
 import Profile from "./components/User/Profile";
-// import Navbar2 from "./components/Navbar2";
 
 function App() {
   return (

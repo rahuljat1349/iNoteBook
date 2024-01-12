@@ -1,4 +1,4 @@
-const dbConnect = require("./db");
+const dbConnect = require("./dbConfig");
 const express = require("express");
 dbConnect();
 
