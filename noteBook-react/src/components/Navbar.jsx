@@ -12,8 +12,8 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { Link } from "react-router-dom";
 
+import { Link } from "react-router-dom";
 
 const pages = ["Home", "About", "Contact"];
 const settings = ["Profile", "Logout"];
@@ -46,7 +46,6 @@ function Navbar() {
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -91,9 +90,9 @@ function Navbar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">
-                    <Link to={`/${page}`}>{page}</Link>
-                  </Typography>
+                  <Link to={`/${page}`} textalign="center">
+                    {page}
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -153,7 +152,9 @@ function Navbar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Link to={`${setting}`} textalign="center">
+                    {setting}
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
