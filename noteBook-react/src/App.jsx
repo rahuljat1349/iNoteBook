@@ -5,20 +5,24 @@ import Home from "./components/Home";
 import About from "./components/About";
 import Logout from "./components/User/Logout";
 import Profile from "./components/User/Profile";
+import { NoteState } from "./context/notes/noteState";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route exact path="/Home" element={<Home />} />
-          <Route exact path="/About" element={<About />} />
-          <Route exact path="/Contact" element={<Contact />} />
-          <Route exact path="/Logout" element={<Logout />} />
-          <Route exact path="/Profile" element={<Profile />} />
-        </Routes>
-      </BrowserRouter>
+      <NoteState>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/Home" element={<Home />} />
+            <Route exact path="/About" element={<About />} />
+            <Route exact path="/Contact" element={<Contact />} />
+            <Route exact path="/Logout" element={<Logout />} />
+            <Route exact path="/Profile" element={<Profile />} />
+          </Routes>
+        </BrowserRouter>
+      </NoteState>
     </>
   );
 }
