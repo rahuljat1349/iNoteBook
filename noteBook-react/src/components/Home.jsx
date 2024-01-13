@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <div className="text-white">Home page</div>
-      <p>this is about {a.state.name} and he is in class {a.state.class}</p>
+     
     </>
   );
 }
