@@ -5,12 +5,12 @@ import Home from "./components/Home/Home";
 import About from "./components/About";
 import Logout from "./components/User/Logout";
 import Profile from "./components/User/Profile";
-// import { NoteState } from "./context/notes/noteState";
+import { NoteState } from "./components/context/NoteState";
 
 function App() {
   return (
     <>
-      {/* <NoteState> */}
+      <NoteState>
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -22,7 +22,7 @@ function App() {
           <Route exact path="/Profile" element={<Profile />} />
         </Routes>
       </BrowserRouter>
-      {/* </NoteState> */}
+      </NoteState>
     </>
   );
 }
