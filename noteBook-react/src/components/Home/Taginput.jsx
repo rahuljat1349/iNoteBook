@@ -8,7 +8,7 @@ export default function Taginput() {
         <option value="General">General</option>
         <option value="Relations">Relations</option>
         <option value="Finance">Finance</option>
-        <option value="personal">personal</option>
+        <option value="personal">Personal</option>
       </select>
     </div>
   );
