@@ -4,7 +4,7 @@ import Notes from "./Notes";
 
 export default function NotesContainer() {
   const context = useContext(noteContext);
-  const { notes, setNotes } = context;
+  const { notes, addNote } = context;
   return (
     <>
       <h1 className="text-3xl my-6 text-center duration-200 text-white font-semibold">
