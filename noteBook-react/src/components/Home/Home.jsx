@@ -9,7 +9,7 @@ export default function Home() {
     <>
      
       {/* form here */}
-      <Form />   
+      {/* <Form />    */}
 
       {/* notes container here */}
       <NotesContainer/>

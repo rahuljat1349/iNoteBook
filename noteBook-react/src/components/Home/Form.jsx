@@ -3,31 +3,31 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import noteContext from "../context/noteContext";
 
+export default function Form(props) {
+  const context = useContext(noteContext);
+  const { addNote } = context;
 
-export default function Form() {
-    const context = useContext(noteContext);
-    const { addNote } = context;
+  const [note, setNote] = useState({ title: "", description: "", tag: "" });
 
-    const [note, setNote] = useState({title:"",description:"",tag:""})
+  const handleClick = (e) => {
+    e.preventDefault()
 
-    const handleClick = ()=>{
-      addNote(note.title, note.description, note.tag)
-    }
-    const onChange = (e)=>{
-      setNote({...note,[e.target.name]:e.target.value})
-    }
+    console.log("adding/edit note");
+    props.function(props.id,note.title, note.description, note.tag);
+  };
+  const onChange = (e) => {
+    setNote({ ...note, [e.target.name]: e.target.value });
+  };
 
   return (
     <>
       {/* main container */}
-      <div className="flex justify-center items-center">
-        <div className="w-80 border-dotted border-2 border-gray m-4 p-4 gap-2 flex flex-col justify-center items-center">
-          <h1 className="text-lg shadow-md shadow-black rounded-lg">
-            {" "}
-            Add a Note
-          </h1>
+      <div className="flex  text-white justify-center items-center">
+        <form className="w-80 m-4 p-4 gap-2 flex flex-col justify-center items-center">
+        
           <div className="flex">
             <input
+              required
               onChange={onChange}
               name="title"
               id="title"
@@ -36,7 +36,7 @@ export default function Form() {
               type="text"
             />
             <select
-            name="tag"
+              name="tag"
               id="tag"
               onChange={onChange}
               className="px-2 rounded-r w-20 text-xs outline-none bg-blue-600"
@@ -49,6 +49,7 @@ export default function Form() {
             </select>
           </div>
           <textarea
+            required
             onChange={onChange}
             className="w-72 rounded outline-none p-2 bg-gray-700"
             name="description"
@@ -57,13 +58,14 @@ export default function Form() {
             cols=""
             rows="3"
           ></textarea>
+         
           <button
             onClick={handleClick}
             className="bg-blue-600 active:bg-blue-900 rounded p-2 w-full"
           >
-            Add Note
+            {props.btnTitle}
           </button>
-        </div>
+        </form>
       </div>
     </>
   );

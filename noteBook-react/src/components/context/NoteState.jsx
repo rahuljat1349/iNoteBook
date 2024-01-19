@@ -42,12 +42,35 @@ export const NoteState = (props) => {
     console.log(note);
     setNotes(notes.concat(note.result));
   };
+  
 
+  
   // Edit a Note
-  const editNote = (id) => {};
+  const editNote = async (id, title, description, tag) => {
+    const response = await fetch(`${url}/api/notes/updatenote/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token":
+        "eyJhbGciOiJIUzI1NiJ9.NjU5ZTNiZmU0NzFkMGY1OWYyYmQxYjBm.Njk-xK0VLyp3Vx-TXmPE95i_vvYvGi13us67p9GUPSM",
+      },
+      body: JSON.stringify({ title, description, tag }),
+    });
+    const note = await response.json();
+    console.log(note,"note updated");
+    // setNotes(notes.concat(note.result));
+  };
 
   // Delete a Note
-  const deleteNote = (id) => {
+  const deleteNote = async (id) => {
+    const response = await fetch(`${url}/api/notes/deletenote/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token":
+          "eyJhbGciOiJIUzI1NiJ9.NjU5ZTNiZmU0NzFkMGY1OWYyYmQxYjBm.Njk-xK0VLyp3Vx-TXmPE95i_vvYvGi13us67p9GUPSM",
+      },
+    });
     const newNotes = notes.filter((note) => {
       return note._id !== id;
     });
