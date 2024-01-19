@@ -1,4 +1,4 @@
-import * as React from "react";
+import {useContext} from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -10,10 +10,17 @@ import Checkbox from "@mui/material/Checkbox";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 import { Edit } from "@mui/icons-material";
+import noteContext from "../context/noteContext";
+
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export default function Notes(props) {
+      const context = useContext(noteContext);
+      const { deleteNote } = context;
+      const handleDelete = ()=>{
+        deleteNote(props.note._id)
+      }
   return (
     <>
       <Card className="text-wrap max-w-24" sx={{ minWidth: 275 }}>
@@ -25,7 +32,7 @@ export default function Notes(props) {
             {props.note.title}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            {props.note.date.slice(0,10)}
+            {/* {props.note.date.slice(0,10)} */}
           </Typography>
           <Typography variant="body2">
             {props.note.description}
@@ -39,7 +46,7 @@ export default function Notes(props) {
             checkedIcon={<Favorite />}
           />
           <Tooltip title="Delete">
-            <IconButton>
+            <IconButton onClick={handleDelete}>
               <DeleteIcon />
             </IconButton>
           </Tooltip>

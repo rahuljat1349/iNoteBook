@@ -61,7 +61,7 @@ export default function Form() {
             onClick={handleClick}
             className="bg-blue-600 active:bg-blue-900 rounded p-2 w-full"
           >
-            Save
+            Add Note
           </button>
         </div>
       </div>
