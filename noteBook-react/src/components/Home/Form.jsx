@@ -10,10 +10,14 @@ export default function Form(props) {
   const [note, setNote] = useState({ title: "", description: "", tag: "" });
 
   const handleClick = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     console.log("adding/edit note");
-    props.function(props.id,note.title, note.description, note.tag);
+    if (props.id !== null && props.id !== undefined) {
+      props.function(props.id, note.title, note.description, note.tag);
+    } else {
+      props.function(note.title, note.description, note.tag);
+    }
   };
   const onChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
@@ -24,7 +28,6 @@ export default function Form(props) {
       {/* main container */}
       <div className="flex  text-white justify-center items-center">
         <form className="w-80 m-4 p-4 gap-2 flex flex-col justify-center items-center">
-        
           <div className="flex">
             <input
               required
@@ -58,7 +61,7 @@ export default function Form(props) {
             cols=""
             rows="3"
           ></textarea>
-         
+
           <button
             onClick={handleClick}
             className="bg-blue-600 active:bg-blue-900 rounded p-2 w-full"

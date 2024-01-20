@@ -58,9 +58,10 @@ export const NoteState = (props) => {
     });
     const note = await response.json();
     console.log(note,"note updated");
-    // setNotes(notes.concat(note.result));
+    setNotes(notes);
   };
 
+  
   // Delete a Note
   const deleteNote = async (id) => {
     const response = await fetch(`${url}/api/notes/deletenote/${id}`, {
