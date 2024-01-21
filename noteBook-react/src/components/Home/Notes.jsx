@@ -3,7 +3,6 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import Checkbox from "@mui/material/Checkbox";
@@ -11,6 +10,7 @@ import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 import noteContext from "../context/noteContext";
 import Addnote from "./Addnote";
+import Deletemodal from "./Deletemodal";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -23,6 +23,13 @@ export default function Notes(props) {
   const handleUpdate = () => {
     // editNote()
   };
+  const intialValues = {
+    id: props.note._id,
+    title: props.note.title,
+    description: props.note.description,
+    tag: props.note.tag,
+  };
+  // console.log(props.note.title);
   return (
     <>
       <Card className="text-wrap max-w-24" sx={{ minWidth: 275 }}>
@@ -47,14 +54,12 @@ export default function Notes(props) {
             icon={<FavoriteBorder />}
             checkedIcon={<Favorite />}
           />
-          <Tooltip title="Delete">
-            <IconButton onClick={handleDelete}>
-              <DeleteIcon />
+            <IconButton >
+              <Deletemodal handleDelete={handleDelete} />
             </IconButton>
-          </Tooltip>
-          <Tooltip title="Edit">
             <IconButton onClick={handleUpdate}>
               <Addnote
+                intialValues={intialValues}
                 element={"edit"}
                 func={editNote}
                 id={props.note._id}
@@ -62,7 +67,6 @@ export default function Notes(props) {
                 heading={"Edit Note"}
               />
             </IconButton>
-          </Tooltip>
         </CardActions>
       </Card>
     </>

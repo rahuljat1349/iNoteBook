@@ -1,4 +1,4 @@
-import * as React from "react";
+import React,{useState,useEffect} from "react";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
@@ -20,17 +20,36 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-export default function Addnote({ id, btnTitle, func, element,heading }) {
+export default function Addnote({
+  id,
+  btnTitle,
+  func,
+  element,
+  heading,
+  // initialValues,
+}) {
   const [open, setOpen] = React.useState(false);
+  // const [note, updateNote] = useState(initialValues);
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (initialValues) => {
     setOpen(true);
+    
+    //  updateNote({
+    //    title: initialValues.title || "",
+    //    description: initialValues.description || "",
+    //    tag: initialValues.tag || "",
+    //  });
   };
   const handleClose = () => {
     setOpen(false);
   };
 
-  return (
+
+      
+//  console.log(note);
+ 
+    
+    return (
     <React.Fragment>
       {element === "edit" ? (
         <Edit onClick={handleClickOpen}></Edit>
@@ -68,7 +87,12 @@ export default function Addnote({ id, btnTitle, func, element,heading }) {
           <CloseIcon />
         </IconButton>
         <DialogContent className="bg-slate-600" dividers>
-          <Form id={id} handleClose={handleClose} function={func} btnTitle={btnTitle} />
+          <Form
+            id={id}
+            handleClose={handleClose}
+            func={func}
+            btnTitle={btnTitle}
+          />
         </DialogContent>
       </BootstrapDialog>
     </React.Fragment>

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import noteContext from "../context/noteContext";
 
-export default function Form(props) {
+export default function Form({id,handleClose,func,btnTitle}) {
   const context = useContext(noteContext);
   const { addNote } = context;
 
@@ -13,10 +13,10 @@ export default function Form(props) {
     e.preventDefault();
 
     console.log("adding/edit note");
-    if (props.id !== null && props.id !== undefined) {
-      props.function(props.id, note.title, note.description, note.tag, props.handleClose);
+    if (id !== null && id !== undefined) {
+      func(id, note.title, note.description, note.tag, handleClose);
     } else {
-      props.function(note.title, note.description, note.tag, props.handleClose);
+    func(note.title, note.description, note.tag, handleClose);
     }
   };
   const onChange = (e) => {
@@ -66,7 +66,7 @@ export default function Form(props) {
             onClick={handleClick}
             className="bg-blue-600 active:bg-blue-900 rounded p-2 w-full"
           >
-            {props.btnTitle}
+            {btnTitle}
           </button>
         </form>
       </div>
