@@ -26,7 +26,7 @@ export const NoteState = (props) => {
   };
 
   // Add a Note
-  const addNote = async (title, description, tag) => {
+  const addNote = async (title, description, tag, handleClose) => {
     // TODO: API call
     const response = await fetch(`${url}/api/notes/addnote`, {
       method: "POST",
@@ -41,12 +41,13 @@ export const NoteState = (props) => {
     const note = await response.json();
     if (response.ok) {
       setNotes(notes.concat(note.result));
+      handleClose();
     }
     console.log(note);
   };
 
   // Edit a Note
-  const editNote = async (id, title, description, tag) => {
+  const editNote = async (id, title, description, tag, handleClose) => {
     const response = await fetch(`${url}/api/notes/updatenote/${id}`, {
       method: "PUT",
       headers: {
@@ -56,11 +57,14 @@ export const NoteState = (props) => {
       },
       body: JSON.stringify({ title, description, tag }),
     });
-    const note = await response.json();
+    const updatedNote = await response.json();
     if (response.ok) {
-      // setNotes(notes.push(note));
+      setNotes((prevNotes) =>
+        prevNotes.map((note) => (note._id === id ? updatedNote : note))
+      );
+      handleClose();
     }
-    console.log(note);
+    console.log(updatedNote);
   };
 
   // Delete a Note

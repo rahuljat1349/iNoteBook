@@ -14,9 +14,9 @@ export default function Form(props) {
 
     console.log("adding/edit note");
     if (props.id !== null && props.id !== undefined) {
-      props.function(props.id, note.title, note.description, note.tag);
+      props.function(props.id, note.title, note.description, note.tag, props.handleClose);
     } else {
-      props.function(note.title, note.description, note.tag);
+      props.function(note.title, note.description, note.tag, props.handleClose);
     }
   };
   const onChange = (e) => {

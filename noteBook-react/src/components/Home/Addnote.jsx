@@ -68,7 +68,7 @@ export default function Addnote({ id, btnTitle, func, element,heading }) {
           <CloseIcon />
         </IconButton>
         <DialogContent className="bg-slate-600" dividers>
-          <Form id={id} function={func} btnTitle={btnTitle} />
+          <Form id={id} handleClose={handleClose} function={func} btnTitle={btnTitle} />
         </DialogContent>
       </BootstrapDialog>
     </React.Fragment>
