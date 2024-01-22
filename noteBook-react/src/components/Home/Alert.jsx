@@ -4,19 +4,29 @@ import { styled } from "@mui/system";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import CloseIcon from "@mui/icons-material/Close";
 import { Snackbar } from "@mui/base/Snackbar";
+import noteContext from "../context/noteContext";
+import { useContext } from "react";
+
+
 
 export default function Alert() {
   const [open, setOpen] = React.useState(false);
   const [exited, setExited] = React.useState(true);
   const nodeRef = React.useRef(null);
 
+  // 
+  const context = useContext(noteContext);
+  const { handleAlert } = context;
+
   const handleClose = (_, reason) => {
     if (reason === "clickaway") {
       return;
     }
 
+
     setOpen(false);
   };
+  
 
   const handleClick = () => {
     setOpen(true);
@@ -68,9 +78,7 @@ export default function Alert() {
               />
               <div className="snackbar-message">
                 <p className="snackbar-title"></p>
-                <p className="snackbar-description">
-                  Note Saved Successfully.
-                </p>
+                <p className="snackbar-description">Note Saved Successfully.</p>
               </div>
               <CloseIcon
                 onClick={handleClose}

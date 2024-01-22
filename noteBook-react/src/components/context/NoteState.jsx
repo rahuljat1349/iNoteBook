@@ -83,9 +83,12 @@ export const NoteState = (props) => {
     setNotes(newNotes);
   };
 
+  // Handle Alert
+  const handleAlert = (arg) => {};
+
   return (
     <NoteContext.Provider
-      value={{ notes, addNote, editNote, deleteNote, getNotes }}
+      value={{ notes, addNote, editNote, deleteNote, getNotes, handleAlert }}
     >
       {props.children}
     </NoteContext.Provider>
