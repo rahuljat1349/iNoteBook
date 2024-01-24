@@ -57,6 +57,7 @@ export default function Form({
             >
               <option value="">Tag</option>
               <option value="General">General</option>
+              <option value="Personal">Personal</option>
               <option value="Relations">Relations</option>
               <option value="Finance">Finance</option>
               <option value="Health">Health</option>

@@ -48,7 +48,9 @@ export default function Notes(props) {
         </CardContent>
         <CardActions>
           <Alert
-            alertMsg={checked ? "Added to favorites." : "Removed from favorites."}
+            alertMsg={
+              checked ? "Added to favorites." : "Removed from favorites."
+            }
             handleChecked={handleChecked}
             checked={checked}
           />
