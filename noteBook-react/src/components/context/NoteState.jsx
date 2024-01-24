@@ -63,6 +63,25 @@ export const NoteState = (props) => {
     }
   };
 
+  // edit favorites
+  const editFavorite = async (id, check) => {
+    const response = await fetch(`${url}/api/notes/updatefavorite/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token":
+          "eyJhbGciOiJIUzI1NiJ9.NjU5ZTNiZmU0NzFkMGY1OWYyYmQxYjBm.Njk-xK0VLyp3Vx-TXmPE95i_vvYvGi13us67p9GUPSM",
+      },
+      body: JSON.stringify({ check }),
+    });
+    const updatedNote = await response.json();
+    if (response.ok) {
+      setNotes((prevNotes) =>
+        prevNotes.map((note) => (note._id === id ? updatedNote : note))
+      );
+    }
+  };
+
   // Delete a Note
   const deleteNote = async (id) => {
     const response = await fetch(`${url}/api/notes/deletenote/${id}`, {
@@ -84,7 +103,15 @@ export const NoteState = (props) => {
 
   return (
     <NoteContext.Provider
-      value={{ notes, addNote, editNote, deleteNote, getNotes, handleAlert }}
+      value={{
+        notes,
+        addNote,
+        editNote,
+        deleteNote,
+        getNotes,
+        handleAlert,
+        editFavorite,
+      }}
     >
       {props.children}
     </NoteContext.Provider>

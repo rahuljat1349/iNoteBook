@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -15,13 +15,16 @@ import Deletemodal from "./Deletemodal";
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export default function Notes(props) {
+  const [checked, setChecked] = useState(props.note.check);
   const context = useContext(noteContext);
-  const { deleteNote, addNote, editNote } = context;
+  const { deleteNote, addNote, editNote, editFavorite } = context;
   const handleDelete = () => {
     deleteNote(props.note._id);
   };
-  const handleUpdate = () => {
-    // console.log(initialValues);
+  const handleChecked = async () => {
+    const newChecked = !checked;
+    setChecked(newChecked);
+    await editFavorite(props.note._id, newChecked);
   };
   const initialValues = {
     id: props.note._id,
@@ -49,6 +52,8 @@ export default function Notes(props) {
         </CardContent>
         <CardActions>
           <Checkbox
+            onClick={handleChecked}
+            checked={checked}
             {...label}
             icon={<FavoriteBorder />}
             checkedIcon={<Favorite />}
@@ -56,7 +61,7 @@ export default function Notes(props) {
           <IconButton>
             <Deletemodal handleDelete={handleDelete} />
           </IconButton>
-          <IconButton onClick={handleUpdate}>
+          <IconButton>
             <Addnote
               initialValues={initialValues}
               element={"edit"}

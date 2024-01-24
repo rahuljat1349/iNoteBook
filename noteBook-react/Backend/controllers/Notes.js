@@ -67,6 +67,37 @@ const handleUpdateNote = async (req, res) => {
   }
 };
 
+const handleFavorite = async (req, res) => {
+  try {
+    // getting information
+    let { check } = req.body;
+    let newNote = {
+      check,
+    };
+
+    // finding if note exists
+    let note = await Notes.findById(req.params.id);
+    if (!note) {
+      return res.status(404).send("not found");
+    }
+
+    // finding if note belongs to user
+    if (note.user.toString() !== req.user) {
+      return res.status(401).send("access denied");
+    }
+
+    // updating the note
+    note = await Notes.findByIdAndUpdate(
+      req.params.id,
+      { $set: newNote },
+      { new: true }
+    );
+    res.json(note);
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
 const handleDeleteNote = async (req, res) => {
   try {
     // finding if the note exists
@@ -93,4 +124,5 @@ module.exports = {
   handleCreateNote,
   handleUpdateNote,
   handleDeleteNote,
+  handleFavorite,
 };

@@ -7,6 +7,7 @@ const {
   handleCreateNote,
   handleUpdateNote,
   handleDeleteNote,
+  handleFavorite,
 } = require("../controllers/Notes");
 
 // Route 1: fetch all the notes using GET => api/notes/fetchnotes
@@ -17,6 +18,9 @@ router.post("/addnote", fetchuser, validateNote, handleCreateNote);
 
 // Route 3: Update note using PUT => api/notes/updatenote
 router.put("/updatenote/:id", fetchuser, validateNote, handleUpdateNote);
+
+// Route 3: Update note using PUT => api/notes/updatenote
+router.put("/updatefavorite/:id", fetchuser,  handleFavorite);
 
 // Route 4: Delete an existing note using DELETE => api/notes/deletenote
 router.delete("/deletenote/:id", fetchuser, handleDeleteNote);

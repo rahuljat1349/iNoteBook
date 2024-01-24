@@ -20,6 +20,10 @@ const NotesSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  check: {
+    type: Boolean,
+    default: false,
+  },
 });
 const Notes = mongoose.model("notes", NotesSchema);
 module.exports = Notes;
