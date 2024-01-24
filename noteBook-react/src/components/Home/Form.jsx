@@ -12,7 +12,6 @@ export default function Form({id,handleClose,func,btnTitle}) {
   const handleClick = (e) => {
     e.preventDefault();
 
-    console.log("adding/edit note");
     if (id !== null && id !== undefined) {
       func(id, note.title, note.description, note.tag, handleClose);
     } else {
@@ -30,7 +29,6 @@ export default function Form({id,handleClose,func,btnTitle}) {
         <form className="w-80 m-4 p-4 gap-2 flex flex-col justify-center items-center">
           <div className="flex">
             <input
-              required
               onChange={onChange}
               name="title"
               id="title"
@@ -52,7 +50,6 @@ export default function Form({id,handleClose,func,btnTitle}) {
             </select>
           </div>
           <textarea
-            required
             onChange={onChange}
             className="w-72 rounded outline-none p-2 bg-gray-700"
             name="description"

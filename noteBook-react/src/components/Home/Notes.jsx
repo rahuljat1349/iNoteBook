@@ -23,12 +23,12 @@ export default function Notes(props) {
   const handleUpdate = () => {
     // editNote()
   };
-  const intialValues = {
-    id: props.note._id,
-    title: props.note.title,
-    description: props.note.description,
-    tag: props.note.tag,
-  };
+  // const intialValues = {
+  //   id: props.note._id,
+  //   title: props.note.title,
+  //   description: props.note.description,
+  //   tag: props.note.tag,
+  // };
   // console.log(props.note.title);
   return (
     <>
@@ -59,7 +59,7 @@ export default function Notes(props) {
             </IconButton>
             <IconButton onClick={handleUpdate}>
               <Addnote
-                intialValues={intialValues}
+                // intialValues={intialValues}
                 element={"edit"}
                 func={editNote}
                 id={props.note._id}

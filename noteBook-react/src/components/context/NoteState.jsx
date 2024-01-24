@@ -21,7 +21,6 @@ export const NoteState = (props) => {
       // body: JSON.stringify({ title, description, tag }),
     });
     const json = await response.json();
-    console.log(json.notes);
     setNotes(json.notes);
   };
 
@@ -37,13 +36,11 @@ export const NoteState = (props) => {
       },
       body: JSON.stringify({ title, description, tag }),
     });
-    console.log("adding a new note");
     const note = await response.json();
     if (response.ok) {
       setNotes(notes.concat(note.result));
       handleClose();
     }
-    console.log(note);
   };
 
   // Edit a Note
@@ -64,7 +61,6 @@ export const NoteState = (props) => {
       );
       handleClose();
     }
-    console.log(updatedNote);
   };
 
   // Delete a Note

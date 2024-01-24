@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
@@ -33,30 +33,21 @@ export default function Addnote({
 
   const handleClickOpen = (initialValues) => {
     setOpen(true);
-    
-    //  updateNote({
-    //    title: initialValues.title || "",
-    //    description: initialValues.description || "",
-    //    tag: initialValues.tag || "",
-    //  });
   };
   const handleClose = () => {
     setOpen(false);
   };
 
+  //  console.log(initialValues);
 
-      
-//  console.log(note);
- 
-    
-    return (
+  return (
     <React.Fragment>
       {element === "edit" ? (
         <Edit onClick={handleClickOpen}></Edit>
       ) : (
         <div
           onClick={handleClickOpen}
-          className="w-72 flex border-dotted border-gray-800 border-2 hover:bg-slate-800 hover:border-white duration-200 cursor-pointer items-center justify-center bg-slate-600 h-52"
+          className="w-72 flex border-dotted border-gray-800 border-2 hover:bg-slate-800 hover:border-white  cursor-pointer items-center justify-center bg-slate-600 h-52"
         >
           <div className="flex gap-1 flex-col items-center">
             <h3>Add a Note</h3>
