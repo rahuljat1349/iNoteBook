@@ -3,11 +3,21 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import noteContext from "../context/noteContext";
 
-export default function Form({id,handleClose,func,btnTitle}) {
+export default function Form({
+  id,
+  handleClose,
+  func,
+  btnTitle,
+  initialValues,
+}) {
   const context = useContext(noteContext);
   const { addNote } = context;
 
-  const [note, setNote] = useState({ title: "", description: "", tag: "" });
+  const [note, setNote] = useState({
+    title: initialValues ? initialValues.title : "",
+    description: initialValues ? initialValues.description : "",
+    tag: initialValues ? initialValues.tag : "",
+  });
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -15,12 +25,13 @@ export default function Form({id,handleClose,func,btnTitle}) {
     if (id !== null && id !== undefined) {
       func(id, note.title, note.description, note.tag, handleClose);
     } else {
-    func(note.title, note.description, note.tag, handleClose);
+      func(note.title, note.description, note.tag, handleClose);
     }
   };
   const onChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
   };
+
 
   return (
     <>
@@ -29,6 +40,7 @@ export default function Form({id,handleClose,func,btnTitle}) {
         <form className="w-80 m-4 p-4 gap-2 flex flex-col justify-center items-center">
           <div className="flex">
             <input
+              value={note.title}
               onChange={onChange}
               name="title"
               id="title"
@@ -37,6 +49,7 @@ export default function Form({id,handleClose,func,btnTitle}) {
               type="text"
             />
             <select
+              value={note.tag}
               name="tag"
               id="tag"
               onChange={onChange}
@@ -50,6 +63,7 @@ export default function Form({id,handleClose,func,btnTitle}) {
             </select>
           </div>
           <textarea
+            value={note.description}
             onChange={onChange}
             className="w-72 rounded outline-none p-2 bg-gray-700"
             name="description"

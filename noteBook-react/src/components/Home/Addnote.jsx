@@ -26,7 +26,7 @@ export default function Addnote({
   func,
   element,
   heading,
-  // initialValues,
+  initialValues,
 }) {
   const [open, setOpen] = React.useState(false);
   // const [note, updateNote] = useState(initialValues);
@@ -38,7 +38,6 @@ export default function Addnote({
     setOpen(false);
   };
 
-  //  console.log(initialValues);
 
   return (
     <React.Fragment>
@@ -79,6 +78,7 @@ export default function Addnote({
         </IconButton>
         <DialogContent className="bg-slate-600" dividers>
           <Form
+          initialValues={initialValues}
             id={id}
             handleClose={handleClose}
             func={func}

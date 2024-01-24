@@ -21,15 +21,14 @@ export default function Notes(props) {
     deleteNote(props.note._id);
   };
   const handleUpdate = () => {
-    // editNote()
+    // console.log(initialValues);
   };
-  // const intialValues = {
-  //   id: props.note._id,
-  //   title: props.note.title,
-  //   description: props.note.description,
-  //   tag: props.note.tag,
-  // };
-  // console.log(props.note.title);
+  const initialValues = {
+    id: props.note._id,
+    title: props.note.title,
+    description: props.note.description,
+    tag: props.note.tag,
+  };
   return (
     <>
       <Card className="text-wrap max-w-24" sx={{ minWidth: 275 }}>
@@ -54,19 +53,19 @@ export default function Notes(props) {
             icon={<FavoriteBorder />}
             checkedIcon={<Favorite />}
           />
-            <IconButton >
-              <Deletemodal handleDelete={handleDelete} />
-            </IconButton>
-            <IconButton onClick={handleUpdate}>
-              <Addnote
-                // intialValues={intialValues}
-                element={"edit"}
-                func={editNote}
-                id={props.note._id}
-                btnTitle={"SAVE CHANGES"}
-                heading={"Edit Note"}
-              />
-            </IconButton>
+          <IconButton>
+            <Deletemodal handleDelete={handleDelete} />
+          </IconButton>
+          <IconButton onClick={handleUpdate}>
+            <Addnote
+              initialValues={initialValues}
+              element={"edit"}
+              func={editNote}
+              id={props.note._id}
+              btnTitle={"SAVE CHANGES"}
+              heading={"Edit Note"}
+            />
+          </IconButton>
         </CardActions>
       </Card>
     </>
