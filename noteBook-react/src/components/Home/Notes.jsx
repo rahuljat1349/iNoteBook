@@ -4,15 +4,11 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
-import Checkbox from "@mui/material/Checkbox";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
-import Favorite from "@mui/icons-material/Favorite";
+
 import noteContext from "../context/noteContext";
 import Addnote from "./Addnote";
 import Deletemodal from "./Deletemodal";
-
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
+import Alert from "./Alert";
 
 export default function Notes(props) {
   const [checked, setChecked] = useState(props.note.check);
@@ -51,13 +47,12 @@ export default function Notes(props) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Checkbox
-            onClick={handleChecked}
+          <Alert
+            alertMsg={checked ? "Added to favorites." : "Removed from favorites."}
+            handleChecked={handleChecked}
             checked={checked}
-            {...label}
-            icon={<FavoriteBorder />}
-            checkedIcon={<Favorite />}
           />
+
           <IconButton>
             <Deletemodal handleDelete={handleDelete} />
           </IconButton>

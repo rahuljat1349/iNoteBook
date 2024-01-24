@@ -6,15 +6,18 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Snackbar } from "@mui/base/Snackbar";
 import noteContext from "../context/noteContext";
 import { useContext } from "react";
+import Checkbox from "@mui/material/Checkbox";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Favorite from "@mui/icons-material/Favorite";
 
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-
-export default function Alert() {
+export default function Alert({handleChecked,checked,alertMsg}) {
   const [open, setOpen] = React.useState(false);
   const [exited, setExited] = React.useState(true);
   const nodeRef = React.useRef(null);
 
-  // 
+  //
   const context = useContext(noteContext);
   const { handleAlert } = context;
 
@@ -23,10 +26,8 @@ export default function Alert() {
       return;
     }
 
-
     setOpen(false);
   };
-  
 
   const handleClick = () => {
     setOpen(true);
@@ -42,9 +43,16 @@ export default function Alert() {
 
   return (
     <React.Fragment>
-      <TriggerButton type="button" onClick={handleClick}>
-        Save Note
-      </TriggerButton>
+      <Checkbox
+        onClick={() => {
+          handleChecked();
+          handleClick();
+        }}
+        checked={checked}
+        {...label}
+        icon={<FavoriteBorder />}
+        checkedIcon={<Favorite />}
+      />
       <StyledSnackbar
         autoHideDuration={5000}
         open={open}
@@ -78,7 +86,7 @@ export default function Alert() {
               />
               <div className="snackbar-message">
                 <p className="snackbar-title"></p>
-                <p className="snackbar-description">Note Saved Successfully.</p>
+                <p className="snackbar-description">{alertMsg}</p>
               </div>
               <CloseIcon
                 onClick={handleClose}

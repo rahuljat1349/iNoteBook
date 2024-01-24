@@ -46,7 +46,7 @@ export default function Addnote({
       ) : (
         <div
           onClick={handleClickOpen}
-          className="w-72 flex border-dotted border-gray-800 border-2 hover:bg-slate-800 hover:border-white  cursor-pointer items-center justify-center bg-slate-600 h-52"
+          className="w-64 m-2 flex border-dotted border-gray-800 border-2 hover:bg-slate-800 hover:border-white  cursor-pointer items-center justify-center bg-slate-600 h-52"
         >
           <div className="flex gap-1 flex-col items-center">
             <h3>Add a Note</h3>

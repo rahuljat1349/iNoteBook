@@ -16,7 +16,7 @@ export default function Form({
   const [note, setNote] = useState({
     title: initialValues ? initialValues.title : "",
     description: initialValues ? initialValues.description : "",
-    tag: initialValues ? initialValues.tag : "",
+    tag: initialValues && initialValues.tag,
   });
 
   const handleClick = (e) => {
