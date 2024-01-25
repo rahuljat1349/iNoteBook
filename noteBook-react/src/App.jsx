@@ -6,6 +6,7 @@ import About from "./components/About";
 import Logout from "./components/User/Logout";
 import Profile from "./components/User/Profile";
 import { NoteState } from "./components/context/NoteState";
+import Login from "./components/User/Login";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/Contact" element={<Contact />} />
           <Route exact path="/Logout" element={<Logout />} />
           <Route exact path="/Profile" element={<Profile />} />
+          <Route exact path="/Login" element={<Login/>} />
         </Routes>
       </BrowserRouter>
       </NoteState>
