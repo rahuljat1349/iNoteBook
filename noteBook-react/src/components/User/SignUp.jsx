@@ -12,7 +12,6 @@ export default function SignUp() {
   const [password, showPassword] = useState(true);
 
   const handleSubmit = async (e) => {
-    console.log("trigger");
     e.preventDefault();
     const response = await fetch(`http://localhost:8000/api/auth/signup/`, {
       method: "POST",
