@@ -44,36 +44,51 @@ export default function SignUp() {
 
   return (
     <>
-      <div className=" w-full flex-col gap-2 items-center justify-center flex p-16">
+      <div className=" w-full  flex-col gap-2 items-center justify-center flex p-16">
         <form
           onSubmit={handleSubmit}
-          className="flex border-[1px] border-solid border-gray-700 flex-col gap-3 bg-slate-800 p-4 w-80 md:w-96"
+          className="flex border-[1px] border-solid rounded-md border-gray-700 flex-col gap-3 bg-slate-800 p-4 w-80 md:w-96"
         >
-          <h1 className="text-center text-3xl">SignUp</h1>
+          <h1 className="text-center font-bold text-3xl">SignUp</h1>
 
-          <label htmlFor="email">Enter Your Email*</label>
+          <label
+            // todo : fon-style
+            htmlFor="email"
+          >
+            Enter Your Email*
+          </label>
           <input
             onChange={onChange}
             value={credentials.email}
             name="email"
             id="email"
-            className="p-2  rounded-sm bg-slate-500 outline-none "
+            className="p-2  rounded-md  font-semibold bg-slate-500 outline-none "
             placeholder="example@email.com"
             required
             type="email"
           />
-          <label htmlFor="name">Enter Your Full Name*</label>
+          <label
+            // todo : fon-style
+            htmlFor="name"
+          >
+            Enter Your Full Name*
+          </label>
           <input
             onChange={onChange}
             value={credentials.name}
             name="name"
             id="name"
-            className="p-2  rounded-sm bg-slate-500 outline-none "
+            className="p-2  rounded-md  font-semibold bg-slate-500 outline-none "
             placeholder="Eg. 'Hitesh Choudhary'"
             required
             type="text"
           />
-          <label htmlFor="password">Enter Your Password*</label>
+          <label
+            // todo : fon-style
+            htmlFor="password"
+          >
+            Enter Your Password*
+          </label>
 
           <div className="flex">
             <input
@@ -81,7 +96,7 @@ export default function SignUp() {
               value={credentials.password}
               name="password"
               id="password"
-              className="p-2 w-80 rounded-l-sm bg-slate-500 outline-none "
+              className="p-2 w-80 rounded-l-md font-semibold bg-slate-500 outline-none "
               placeholder="password"
               required
               type={password ? "password" : "text"}
@@ -93,7 +108,7 @@ export default function SignUp() {
                   return !value;
                 });
               }}
-              className="p-2  rounded-r-sm bg-slate-500 outline-none "
+              className="p-2  rounded-r-md bg-slate-500 outline-none "
             >
               {password ? <VisibilityIcon /> : <VisibilityOffIcon />}
             </button>
@@ -104,7 +119,7 @@ export default function SignUp() {
           </div>
           <button
             type="submit"
-            className="p-2 duration-200 hover:bg-blue-700 rounded-sm bg-blue-500 outline-none "
+            className="p-2 duration-200 hover:bg-blue-700 rounded-md  font-semibold bg-blue-500 outline-none "
           >
             Create Account
           </button>
