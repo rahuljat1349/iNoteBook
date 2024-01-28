@@ -31,7 +31,7 @@ const handleCreateUser = async (req, res) => {
     // sending token
     const data = user.id;
     const authToken = jwt.sign(data, JWT_SECRET);
-    return res.status(201).json({ authToken });
+    return res.json({ authToken });
     console.log(result);
   } catch (err) {
     return res.status(500).json({ error: "Internal server error" });

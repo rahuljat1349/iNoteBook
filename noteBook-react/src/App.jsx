@@ -7,6 +7,7 @@ import Logout from "./components/User/Logout";
 import Profile from "./components/User/Profile";
 import { NoteState } from "./components/context/NoteState";
 import Login from "./components/User/Login";
+import SignUp from "./components/User/SignUp";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/Logout" element={<Logout />} />
           <Route exact path="/Profile" element={<Profile />} />
           <Route exact path="/Login" element={<Login/>} />
+          <Route exact path="/SignUp" element={<SignUp/>} />
         </Routes>
       </BrowserRouter>
       </NoteState>

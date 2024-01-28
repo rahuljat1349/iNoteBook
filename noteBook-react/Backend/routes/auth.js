@@ -12,8 +12,8 @@ const {
   handleGetUser,
 } = require("../controllers/User");
 
-// Route 1: create a user using POST => api/auth/login
-router.post("/createuser", validateCreateUser, handleCreateUser);
+// Route 1: create a user using POST => api/auth/signup
+router.post("/signup", validateCreateUser, handleCreateUser);
 
 //Route 2: authenticate a user using POST => api/auth/login
 router.post("/login", validateLogin, handleLogin);
