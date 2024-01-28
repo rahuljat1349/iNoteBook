@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 export default function SignUp() {
   let navigate = useNavigate();
   const [credentials, setCredentials] = useState({
@@ -7,6 +9,8 @@ export default function SignUp() {
     email: "",
     password: "",
   });
+  const [password, showPassword] = useState(true);
+
   const handleSubmit = async (e) => {
     console.log("trigger");
     e.preventDefault();
@@ -21,7 +25,7 @@ export default function SignUp() {
         password: credentials.password,
       }),
     });
-    
+
     try {
       if (response.ok) {
         const json = await response.json();
@@ -72,16 +76,29 @@ export default function SignUp() {
           />
           <label htmlFor="password">Enter Your Password*</label>
 
-          <input
-            onChange={onChange}
-            value={credentials.password}
-            name="password"
-            id="password"
-            className="p-2  rounded-sm bg-slate-500 outline-none "
-            placeholder="password"
-            required
-            type="password"
-          />
+          <div className="flex">
+            <input
+              onChange={onChange}
+              value={credentials.password}
+              name="password"
+              id="password"
+              className="p-2 w-80 rounded-l-sm bg-slate-500 outline-none "
+              placeholder="password"
+              required
+              type={password ? "password" : "text"}
+            />
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                showPassword((value) => {
+                  return !value;
+                });
+              }}
+              className="p-2  rounded-r-sm bg-slate-500 outline-none "
+            >
+              {password ? <VisibilityIcon /> : <VisibilityOffIcon />}
+            </button>
+          </div>
           <div>
             <input className=" mr-2" type="checkbox" />
             <span>Remember me</span>
