@@ -51,53 +51,37 @@ export default function SignUp() {
         >
           <h1 className="text-center font-bold text-3xl">SignUp</h1>
 
-          <label
-            // todo : fon-style
-            htmlFor="email"
-          >
-            Enter Your Email*
-          </label>
           <input
             onChange={onChange}
             value={credentials.email}
             name="email"
             id="email"
             className="p-2  rounded-md  font-semibold bg-slate-500 outline-none "
-            placeholder="example@email.com"
+            placeholder="Enter Your Email"
             required
             type="email"
           />
-          <label
-            // todo : fon-style
-            htmlFor="name"
-          >
-            Enter Your Full Name*
-          </label>
+
           <input
             onChange={onChange}
             value={credentials.name}
             name="name"
             id="name"
             className="p-2  rounded-md  font-semibold bg-slate-500 outline-none "
-            placeholder="Eg. 'Hitesh Choudhary'"
+            placeholder="Enter Your Full Name"
             required
             type="text"
           />
-          <label
-            // todo : fon-style
-            htmlFor="password"
-          >
-            Enter Your Password*
-          </label>
 
           <div className="flex">
             <input
+              minLength={6}
               onChange={onChange}
               value={credentials.password}
               name="password"
               id="password"
               className="p-2 w-80 rounded-l-md font-semibold bg-slate-500 outline-none "
-              placeholder="password"
+              placeholder="Create a Password"
               required
               type={password ? "password" : "text"}
             />
@@ -113,6 +97,15 @@ export default function SignUp() {
               {password ? <VisibilityIcon /> : <VisibilityOffIcon />}
             </button>
           </div>
+          <input
+            minLength={6}
+            name="password"
+            id="password"
+            className="p-2 rounded-md font-semibold bg-slate-500 outline-none "
+            placeholder="Confirm Password"
+            required
+            type={password ? "password" : "text"}
+          />
           <div>
             <input className=" mr-2" type="checkbox" />
             <span>Remember me</span>

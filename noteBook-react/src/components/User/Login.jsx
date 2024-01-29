@@ -44,28 +44,18 @@ export default function Login() {
         >
           <h1 className="text-center font-bold text-3xl">Login</h1>
 
-          <label
-            // todo : fon-style
-            htmlFor="email"
-          >
-            Enter Your Email*
-          </label>
+        
           <input
             onChange={onChange}
             value={credentials.email}
             name="email"
             id="email"
             className="p-2  rounded-md font-semibold bg-slate-500 outline-none "
-            placeholder="example@email.com"
+            placeholder="Enter Your Email"
             required
             type="email"
           />
-          <label
-            // todo : fon-style
-            htmlFor="password"
-          >
-            Enter Your Password*
-          </label>
+         
 
           <div className="flex">
             <input
@@ -74,7 +64,7 @@ export default function Login() {
               name="password"
               id="password"
               className="p-2 w-80 rounded-l-md font-semibold bg-slate-500 outline-none "
-              placeholder="password"
+              placeholder="Enter Your Password"
               required
               type={password ? "password" : "text"}
             />
