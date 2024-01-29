@@ -97,18 +97,11 @@ export default function SignUp() {
               {password ? <VisibilityIcon /> : <VisibilityOffIcon />}
             </button>
           </div>
-          <input
-            minLength={6}
-            name="password"
-            id="password"
-            className="p-2 rounded-md font-semibold bg-slate-500 outline-none "
-            placeholder="Confirm Password"
-            required
-            type={password ? "password" : "text"}
-          />
           <div>
-            <input className=" mr-2" type="checkbox" />
-            <span>Remember me</span>
+            <input id="checkbox" className="cursor-pointer mr-2 bg-black" type="checkbox" />
+            <label className="cursor-pointer" htmlFor="checkbox">
+              Remember me
+            </label>
           </div>
           <button
             type="submit"

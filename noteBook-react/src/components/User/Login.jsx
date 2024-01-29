@@ -44,7 +44,6 @@ export default function Login() {
         >
           <h1 className="text-center font-bold text-3xl">Login</h1>
 
-        
           <input
             onChange={onChange}
             value={credentials.email}
@@ -55,7 +54,6 @@ export default function Login() {
             required
             type="email"
           />
-         
 
           <div className="flex">
             <input
@@ -81,8 +79,14 @@ export default function Login() {
             </button>
           </div>
           <div>
-            <input className=" mr-2" type="checkbox" />
-            <span>Remember me</span>
+            <input
+              id="checkbox"
+              className="cursor-pointer mr-2"
+              type="checkbox"
+            />
+            <label className="cursor-pointer" htmlFor="checkbox">
+              Remember me
+            </label>
             <a className="float-right text-blue-500" href="">
               forgot password?
             </a>
