@@ -27,6 +27,7 @@ export default function Addnote({
   element,
   heading,
   initialValues,
+  handleAlert,
 }) {
   const [open, setOpen] = React.useState(false);
   // const [note, updateNote] = useState(initialValues);
@@ -83,6 +84,7 @@ export default function Addnote({
             handleClose={handleClose}
             func={func}
             btnTitle={btnTitle}
+            handleAlert={handleAlert}
           />
         </DialogContent>
       </BootstrapDialog>

@@ -9,6 +9,7 @@ export default function Form({
   func,
   btnTitle,
   initialValues,
+  handleAlert,
 }) {
   const context = useContext(noteContext);
   const { addNote } = context;
@@ -24,8 +25,10 @@ export default function Form({
 
     if (id !== null && id !== undefined) {
       func(id, note.title, note.description, note.tag, handleClose);
+      handleAlert("Your note was added successfully","success")
     } else {
       func(note.title, note.description, note.tag, handleClose);
+      handleAlert("Your note was updated successfully","success")
     }
   };
   const onChange = (e) => {

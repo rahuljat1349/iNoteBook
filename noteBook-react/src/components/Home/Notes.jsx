@@ -7,16 +7,22 @@ import IconButton from "@mui/material/IconButton";
 
 import noteContext from "../context/noteContext";
 import Addnote from "./Addnote";
+import Checkbox from "@mui/material/Checkbox";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Favorite from "@mui/icons-material/Favorite";
 import Deletemodal from "./Deletemodal";
-import Alert from "./Alert";
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export default function Notes(props) {
   const [checked, setChecked] = useState(props.note.check);
   const context = useContext(noteContext);
   const { deleteNote, addNote, editNote, editFavorite } = context;
+
   const handleDelete = () => {
     deleteNote(props.note._id);
+    props.handleAlert("Your note was deleted successfilly", "success");
   };
+
   const handleChecked = async () => {
     const newChecked = !checked;
     setChecked(newChecked);
@@ -47,12 +53,20 @@ export default function Notes(props) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Alert
-            alertMsg={
-              checked ? "Added to favorites." : "Removed from favorites."
-            }
-            handleChecked={handleChecked}
+          <Checkbox
+            onClick={() => {
+              handleChecked();
+              props.handleAlert(
+                `${
+                  !checked ? "Added to favorites." : "Removed from favorites"
+                }`,
+                "success"
+              );
+            }}
             checked={checked}
+            {...label}
+            icon={<FavoriteBorder />}
+            checkedIcon={<Favorite />}
           />
 
           <IconButton>
