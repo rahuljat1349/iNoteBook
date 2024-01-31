@@ -94,12 +94,26 @@ export const NoteState = (props) => {
   };
 
   // Handle Alert
-  const handleAlert = (arg) => {};
+  const [alert, setAlert] = useState(false);
+  const [alertMsg, setAlertMsg] = useState("");
+  const [alertType, setAlertType] = useState("");
+
+  const handleAlert = (Msg, Type) => {
+    setAlert(true);
+    setAlertMsg(Msg);
+    setAlertType(Type);
+    setTimeout(() => {
+      setAlert(false);
+    }, 3000);
+  };
 
   return (
     <NoteContext.Provider
       value={{
         notes,
+        alert,
+        alertType,
+        alertMsg,
         addNote,
         editNote,
         deleteNote,

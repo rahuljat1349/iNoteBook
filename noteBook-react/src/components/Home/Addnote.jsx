@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
-import Button from "@mui/material/Button";
+import React from "react";
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import Typography from "@mui/material/Typography";
 import { AddCircle, Edit } from "@mui/icons-material";
 import Form from "./Form";
 
@@ -27,7 +24,6 @@ export default function Addnote({
   element,
   heading,
   initialValues,
-  handleAlert,
 }) {
   const [open, setOpen] = React.useState(false);
   // const [note, updateNote] = useState(initialValues);
@@ -38,7 +34,6 @@ export default function Addnote({
   const handleClose = () => {
     setOpen(false);
   };
-
 
   return (
     <React.Fragment>
@@ -79,12 +74,11 @@ export default function Addnote({
         </IconButton>
         <DialogContent className="bg-slate-600" dividers>
           <Form
-          initialValues={initialValues}
+            initialValues={initialValues}
             id={id}
             handleClose={handleClose}
             func={func}
             btnTitle={btnTitle}
-            handleAlert={handleAlert}
           />
         </DialogContent>
       </BootstrapDialog>

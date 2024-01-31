@@ -9,10 +9,9 @@ export default function Form({
   func,
   btnTitle,
   initialValues,
-  handleAlert,
 }) {
   const context = useContext(noteContext);
-  const { addNote } = context;
+  const { handleAlert } = context;
 
   const [note, setNote] = useState({
     title: initialValues ? initialValues.title : "",
@@ -25,16 +24,19 @@ export default function Form({
 
     if (id !== null && id !== undefined) {
       func(id, note.title, note.description, note.tag, handleClose);
-      handleAlert("Your note was added successfully","success")
+      if (note.title.length > 2 && note.description.length > 4) {
+        handleAlert("Your note was updated successfully", "success");
+      }
     } else {
       func(note.title, note.description, note.tag, handleClose);
-      handleAlert("Your note was updated successfully","success")
+      if (note.title.length > 2 && note.description.length > 4) {
+        handleAlert("Your note was added successfully", "success");
+      }
     }
   };
   const onChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
   };
-
 
   return (
     <>

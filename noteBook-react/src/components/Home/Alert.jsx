@@ -1,12 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Alert from "@mui/material/Alert";
 import IconButton from "@mui/material/IconButton";
 import Collapse from "@mui/material/Collapse";
 import CloseIcon from "@mui/icons-material/Close";
+import noteContext from "../context/noteContext";
 
-export default function AlertBar({ alert, alertMsg, alertType }) {
+export default function AlertBar({}) {
+  const context = useContext(noteContext);
+  const { alert, alertType, alertMsg } = context;
   const [open, setOpen] = React.useState(false);
   useEffect(() => {
     if (alert) {
@@ -14,7 +17,6 @@ export default function AlertBar({ alert, alertMsg, alertType }) {
     } else {
       setOpen(false);
     }
-    console.log(alertType);
   }, [alert]);
   console.log(alertType);
   return (

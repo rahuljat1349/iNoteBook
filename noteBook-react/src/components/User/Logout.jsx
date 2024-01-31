@@ -1,9 +1,15 @@
 import * as React from "react";
+import { useEffect } from "react";
 import Button from "@mui/joy/Button";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Logout() {
   let navigate = useNavigate();
+    useEffect(() => {
+      if (!localStorage.getItem("token")) {
+        navigate("/login");
+      }
+    }, []);
   return (
     <div className="h-80 w-full justify-center items-center flex">
       <React.Fragment>

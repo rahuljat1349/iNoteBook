@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import noteContext from "../context/noteContext";
 import Notes from "./Notes";
 import Addnote from "./Addnote";
-export default function NotesContainer({ handleAlert }) {
+export default function NotesContainer({}) {
   let navigate = useNavigate();
   const context = useContext(noteContext);
   const { notes, getNotes, editNote, addNote } = context;
@@ -19,12 +19,8 @@ export default function NotesContainer({ handleAlert }) {
 
   return (
     <>
-      <h1 className="text-3xl my-6 text-center text-white font-semibold">
-        Your Notes
-      </h1>
-      <div className="w-full px-8 mb-2  flex flex-wrap items-center justify-center gap-2">
+      <div className="w-full px-8 mb-4 mt-3 flex flex-wrap items-center justify-center gap-2">
         <Addnote
-          handleAlert={handleAlert}
           element={""}
           func={addNote}
           btnTitle={"Add Note"}
@@ -32,14 +28,7 @@ export default function NotesContainer({ handleAlert }) {
         />
         {notes.length === 0 && "No notes to display, Try adding a new note."}
         {notes.map((note, index) => {
-          return (
-            <Notes
-              handleAlert={handleAlert}
-              key={index}
-              editNote={editNote}
-              note={note}
-            />
-          );
+          return <Notes key={index} editNote={editNote} note={note} />;
         })}
       </div>
     </>

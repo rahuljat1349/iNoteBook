@@ -16,11 +16,11 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
 export default function Notes(props) {
   const [checked, setChecked] = useState(props.note.check);
   const context = useContext(noteContext);
-  const { deleteNote, addNote, editNote, editFavorite } = context;
+  const { deleteNote, addNote, editNote, editFavorite, handleAlert } = context;
 
   const handleDelete = () => {
     deleteNote(props.note._id);
-    props.handleAlert("Your note was deleted successfilly", "success");
+    handleAlert("Your note was deleted successfully.", "success");
   };
 
   const handleChecked = async () => {
@@ -56,7 +56,7 @@ export default function Notes(props) {
           <Checkbox
             onClick={() => {
               handleChecked();
-              props.handleAlert(
+              handleAlert(
                 `${
                   !checked ? "Added to favorites." : "Removed from favorites"
                 }`,
