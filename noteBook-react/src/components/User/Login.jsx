@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import noteContext from "../context/noteContext";
+import AlertBar from "../Home/Alert";
+
 export default function Login() {
+  const context = useContext(noteContext);
+  const { handleAlert } = context;
   let navigate = useNavigate();
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [password, showPassword] = useState(true);
@@ -10,6 +15,7 @@ export default function Login() {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       navigate("/");
+      handleAlert("You are already logged in.", "success");
     }
   }, []);
 
@@ -28,11 +34,12 @@ export default function Login() {
     try {
       if (response.ok) {
         const json = await response.json();
-        console.log("Success");
         localStorage.setItem("token", json.authToken);
         navigate("/Home");
+        handleAlert("Logged in successfully.", "success");
       } else {
-        console.log("Invalid email or password");
+        console.log(response);
+        handleAlert("Invalid email or password.", "error");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -43,6 +50,9 @@ export default function Login() {
   };
   return (
     <>
+      <div className="h-12 px-6 sm:px-10 lg:px-80 w-full fixed  py-3">
+        <AlertBar />
+      </div>
       <div className=" w-full flex-col gap-2 items-center justify-center flex p-16">
         <form
           onSubmit={handleSubmit}
@@ -63,6 +73,7 @@ export default function Login() {
 
           <div className="flex">
             <input
+            minLength={6}
               onChange={onChange}
               value={credentials.password}
               name="password"

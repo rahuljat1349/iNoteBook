@@ -8,14 +8,14 @@ const handleCreateUser = async (req, res) => {
   // validation
   const error = validationResult(req);
   if (!error.isEmpty()) {
-    return res.status(400).json({ errors: error.array() });
+   return res.status(400).json({ errors: error.array() });
   }
 
   // if user already exists
   try {
     let user = await User.findOne({ email: req.body.email });
     if (user) {
-      return res.send("Email already exists!");
+      return res.status(409).json({ error: "email already exists!" });
     }
 
     // adding user

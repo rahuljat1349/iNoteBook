@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import noteContext from "../context/noteContext";
+import AlertBar from "../Home/Alert";
+
 export default function SignUp() {
+  const context = useContext(noteContext);
+  const { handleAlert } = context;
   let navigate = useNavigate();
   const [credentials, setCredentials] = useState({
     name: "",
@@ -13,6 +18,7 @@ export default function SignUp() {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       navigate("/");
+      handleAlert("You are already Logged in.", "success");
     }
   }, []);
 
@@ -33,11 +39,11 @@ export default function SignUp() {
     try {
       if (response.ok) {
         const json = await response.json();
-        console.log("Success");
         localStorage.setItem("token", json.authToken);
         navigate("/Home");
-      } else {
-        console.log("Invalid email or password");
+        handleAlert("Created account successfully.", "success");
+      } else if (response.status == 409) {
+        handleAlert("Email already exists", "warning");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -49,6 +55,9 @@ export default function SignUp() {
 
   return (
     <>
+      <div className="h-12 px-6 sm:px-10 lg:px-80 w-full fixed  py-3">
+        <AlertBar />
+      </div>
       <div className=" w-full  flex-col gap-2 items-center justify-center flex p-16">
         <form
           onSubmit={handleSubmit}
@@ -68,6 +77,7 @@ export default function SignUp() {
           />
 
           <input
+            minLength={3}
             onChange={onChange}
             value={credentials.name}
             name="name"

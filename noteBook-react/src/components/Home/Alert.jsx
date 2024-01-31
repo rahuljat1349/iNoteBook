@@ -18,7 +18,7 @@ export default function AlertBar({}) {
       setOpen(false);
     }
   }, [alert]);
-  console.log(alertType);
+  // console.log(alertType);
   return (
     <Box sx={{ width: "100%" }}>
       <Collapse in={open}>

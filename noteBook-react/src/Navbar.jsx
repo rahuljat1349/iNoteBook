@@ -127,7 +127,7 @@ function Navbar() {
             ))}
           </Box>
 
-          {localStorage.getItem("token") && (
+       
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -159,7 +159,7 @@ function Navbar() {
                 ))}
               </Menu>
             </Box>
-          )}
+       
         </Toolbar>
       </Container>
     </AppBar>
