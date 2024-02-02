@@ -18,10 +18,7 @@ export default function Notes(props) {
   const context = useContext(noteContext);
   const { deleteNote, addNote, editNote, editFavorite, handleAlert } = context;
 
-  const handleDelete = () => {
-    deleteNote(props.note._id);
-    handleAlert("Your note was deleted successfully.", "success");
-  };
+
 
   const handleChecked = async () => {
     const newChecked = !checked;
@@ -70,7 +67,14 @@ export default function Notes(props) {
           />
 
           <IconButton>
-            <Deletemodal handleDelete={handleDelete} />
+            <Deletemodal
+            id={"delete"}
+              delMsg={
+                "This action cannot be undone. This will permanently delete your Note and remove your data from our servers."
+              }
+              delBtn={"Delete Note"}
+              noteId={props.note._id}
+            />
           </IconButton>
           <IconButton>
             <Addnote

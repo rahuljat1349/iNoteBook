@@ -8,7 +8,7 @@ const handleCreateUser = async (req, res) => {
   // validation
   const error = validationResult(req);
   if (!error.isEmpty()) {
-   return res.status(400).json({ errors: error.array() });
+    return res.status(400).json({ errors: error.array() });
   }
 
   // if user already exists
@@ -70,7 +70,7 @@ const handleGetUser = async (req, res) => {
   try {
     userId = req.user;
     const user = await User.findById(userId).select("-password");
-    res.send(user);
+    return res.json(user);
   } catch (error) {
     return res.status(500).json({ error: "Internal server error" });
   }
