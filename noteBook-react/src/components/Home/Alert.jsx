@@ -10,7 +10,7 @@ function AlertBar({}) {
   // const [variant, setVariant] = React.useState(alertType)
   useEffect(() => {
     if (alert) {
-      enqueueSnackbar(alertMsg, { alertType });
+      enqueueSnackbar(alertMsg, { variant:alertType });
     }
     console.log(alertType);
   }, [alert]);
