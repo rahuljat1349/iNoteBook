@@ -15,7 +15,7 @@ export default function NotesContainer({}) {
       navigate("/login");
       console.log("not getting token");
     }
-  }, []);
+  },[] );
 
   return (
     <>

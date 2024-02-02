@@ -1,5 +1,5 @@
 import { useEffect} from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Profile() {
@@ -9,5 +9,5 @@ export default function Profile() {
       navigate("/login");
     }
   }, []);
-  return <div className="text-white">This is Your Profile niggah</div>;
+  return <div className="text-white">This is Your Profile </div>;
 }

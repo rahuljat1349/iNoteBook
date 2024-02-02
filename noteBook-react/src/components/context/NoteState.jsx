@@ -96,15 +96,17 @@ export const NoteState = (props) => {
   // Handle Alert
   const [alert, setAlert] = useState(false);
   const [alertMsg, setAlertMsg] = useState("");
-  const [alertType, setAlertType] = useState("");
+  const [alertType, setAlertType] = useState();
 
-  const handleAlert = (Msg, Type) => {
+  const handleAlert = async (Msg, Type) => {
     setAlert(true);
-    setAlertMsg(Msg);
-    setAlertType(Type);
+    await setAlertMsg(Msg);
+    await setAlertType(Type);
+    // console.log(Type);
+    // console.log(alertType);
     setTimeout(() => {
       setAlert(false);
-    }, 3000);
+    }, 10);
   };
 
   return (

@@ -1,47 +1,27 @@
 import { useEffect, useContext } from "react";
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Alert from "@mui/material/Alert";
-import IconButton from "@mui/material/IconButton";
-import Collapse from "@mui/material/Collapse";
-import CloseIcon from "@mui/icons-material/Close";
+import { SnackbarProvider, useSnackbar } from "notistack";
 import noteContext from "../context/noteContext";
 
-export default function AlertBar({}) {
+function AlertBar({}) {
+  const { enqueueSnackbar } = useSnackbar();
   const context = useContext(noteContext);
   const { alert, alertType, alertMsg } = context;
-  const [open, setOpen] = React.useState(false);
+  // const [variant, setVariant] = React.useState(alertType)
   useEffect(() => {
     if (alert) {
-      setOpen(true);
-    } else {
-      setOpen(false);
+      enqueueSnackbar(alertMsg, { alertType });
     }
+    console.log(alertType);
   }, [alert]);
-  // console.log(alertType);
+  return <></>;
+}
+export default function IntegrationNotistack() {
   return (
-    <Box sx={{ width: "100%" }}>
-      <Collapse in={open}>
-        <Alert
-          // severity={alertType}
-          // has to fix here
-          action={
-            <IconButton
-              aria-label="close"
-              color="inherit"
-              size="small"
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
-              <CloseIcon fontSize="inherit" />
-            </IconButton>
-          }
-          sx={{ mb: 2 }}
-        >
-          {alertMsg}
-        </Alert>
-      </Collapse>
-    </Box>
+    <SnackbarProvider maxSnack={3}>
+      <AlertBar />
+    </SnackbarProvider>
   );
 }
+
+//

@@ -38,7 +38,7 @@ export default function Login() {
         navigate("/Home");
         handleAlert("Logged in successfully.", "success");
       } else {
-        console.log(response);
+        // console.log(response);
         handleAlert("Invalid email or password.", "error");
       }
     } catch (error) {
