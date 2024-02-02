@@ -11,9 +11,10 @@ export default function Login() {
   let navigate = useNavigate();
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [password, showPassword] = useState(true);
+  const [check, setCheck] = useState(true);
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
+    if (localStorage.getItem("token")||sessionStorage.getItem("token")) {
       navigate("/");
       handleAlert("You are already logged in.", "success");
     }
@@ -34,7 +35,9 @@ export default function Login() {
     try {
       if (response.ok) {
         const json = await response.json();
-        localStorage.setItem("token", json.authToken);
+       check
+         ? localStorage.setItem("token", json.authToken)
+         : sessionStorage.setItem("token", json.authToken);
         navigate("/Home");
         handleAlert("Logged in successfully.", "success");
       } else {
@@ -65,7 +68,7 @@ export default function Login() {
             value={credentials.email}
             name="email"
             id="email"
-            className="p-2  rounded-md font-semibold bg-slate-500 outline-none "
+            className="p-2 focus:outline-blue-500 duration-200 rounded-md font-semibold bg-slate-500 outline-none "
             placeholder="Enter Your Email"
             required
             type="email"
@@ -73,12 +76,12 @@ export default function Login() {
 
           <div className="flex">
             <input
-            minLength={6}
+              minLength={6}
               onChange={onChange}
               value={credentials.password}
               name="password"
               id="password"
-              className="p-2 w-80 rounded-l-md font-semibold bg-slate-500 outline-none "
+              className="p-2 w-full focus:outline-blue-500 duration-200 rounded-md font-semibold bg-slate-500 outline-none "
               placeholder="Enter Your Password"
               required
               type={password ? "password" : "text"}
@@ -90,13 +93,17 @@ export default function Login() {
                   return !value;
                 });
               }}
-              className="p-2  rounded-r-md font-semibold bg-slate-500 outline-none "
+              className=" -ml-10 font-semibold bg-slate-500 outline-none "
             >
               {password ? <VisibilityIcon /> : <VisibilityOffIcon />}
             </button>
           </div>
           <div>
             <input
+              checked={check}
+              onChange={() => {
+                setCheck(!check);
+              }}
               id="checkbox"
               className="cursor-pointer mr-2"
               type="checkbox"

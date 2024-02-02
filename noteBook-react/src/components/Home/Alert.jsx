@@ -7,14 +7,15 @@ function AlertBar({}) {
   const { enqueueSnackbar } = useSnackbar();
   const context = useContext(noteContext);
   const { alert, alertType, alertMsg } = context;
-  // const [variant, setVariant] = React.useState(alertType)
+
   useEffect(() => {
     if (alert) {
-      enqueueSnackbar(alertMsg, { variant:alertType });
+      // Ensure 'variant' property is set correctly
+      enqueueSnackbar(alertMsg, { variant: alertType });
     }
-    console.log(alertType);
-  }, [alert]);
-  return <></>;
+  }, [alert, alertType]);
+  return <>
+  </>;
 }
 export default function IntegrationNotistack() {
   return (

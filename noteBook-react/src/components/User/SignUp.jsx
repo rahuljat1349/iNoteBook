@@ -15,8 +15,9 @@ export default function SignUp() {
     password: "",
   });
   const [password, showPassword] = useState(true);
+  const [check, setCheck] = useState(true);
   useEffect(() => {
-    if (localStorage.getItem("token")) {
+    if (localStorage.getItem("token")||sessionStorage.getItem("token")) {
       navigate("/");
       handleAlert("You are already Logged in.", "success");
     }
@@ -39,7 +40,9 @@ export default function SignUp() {
     try {
       if (response.ok) {
         const json = await response.json();
-        localStorage.setItem("token", json.authToken);
+         check
+           ? localStorage.setItem("token", json.authToken)
+           : sessionStorage.setItem("token", json.authToken);
         navigate("/Home");
         handleAlert("Created account successfully.", "success");
       } else if (response.status == 409) {
@@ -70,7 +73,7 @@ export default function SignUp() {
             value={credentials.email}
             name="email"
             id="email"
-            className="p-2  rounded-md  font-semibold bg-slate-500 outline-none "
+            className="p-2 focus:outline-blue-500 duration-200  rounded-md  font-semibold bg-slate-500 outline-none "
             placeholder="Enter Your Email"
             required
             type="email"
@@ -82,7 +85,7 @@ export default function SignUp() {
             value={credentials.name}
             name="name"
             id="name"
-            className="p-2  rounded-md  font-semibold bg-slate-500 outline-none "
+            className="p-2 focus:outline-blue-500 duration-200  rounded-md  font-semibold bg-slate-500 outline-none "
             placeholder="Enter Your Full Name"
             required
             type="text"
@@ -95,7 +98,7 @@ export default function SignUp() {
               value={credentials.password}
               name="password"
               id="password"
-              className="p-2 w-80 rounded-l-md font-semibold bg-slate-500 outline-none "
+              className="p-2 focus:outline-blue-500 duration-200  w-full rounded-md font-semibold bg-slate-500 outline-none "
               placeholder="Create a Password"
               required
               type={password ? "password" : "text"}
@@ -103,17 +106,20 @@ export default function SignUp() {
             <button
               onClick={(e) => {
                 e.preventDefault();
-                showPassword((value) => {
-                  return !value;
-                });
+                showPassword(!password);
               }}
-              className="p-2  rounded-r-md bg-slate-500 outline-none "
+              className="-ml-10 bg-slate-500 outline-none "
             >
               {password ? <VisibilityIcon /> : <VisibilityOffIcon />}
             </button>
           </div>
           <div>
             <input
+              checked={check}
+              onChange={() => {
+                setCheck(!check);
+              }}
+              name="check"
               id="checkbox"
               className="cursor-pointer mr-2 bg-black"
               type="checkbox"

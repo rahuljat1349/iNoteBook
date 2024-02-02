@@ -8,13 +8,14 @@ export default function NotesContainer({}) {
   const context = useContext(noteContext);
   const { notes, getNotes, editNote, addNote } = context;
   useEffect(() => {
-    if (localStorage.getItem("token")) {
+      console.log("NotesContainer useEffect - Start");
+    if (localStorage.getItem("token")||sessionStorage.getItem("token")) {
       getNotes();
-      console.log("getting token");
     } else {
       navigate("/login");
       console.log("not getting token");
     }
+      console.log("NotesContainer useEffect - End");
   },[] );
 
   return (
@@ -26,7 +27,7 @@ export default function NotesContainer({}) {
           btnTitle={"Add Note"}
           heading={"Add a Note"}
         />
-        {notes.length === 0 && "No notes to display, Try adding a new note."}
+        {notes.length === 0 && "No notes to display, Try adding a New Note."}
         {notes.map((note, index) => {
           return <Notes key={index} editNote={editNote} note={note} />;
         })}

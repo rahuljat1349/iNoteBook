@@ -15,7 +15,7 @@ export const NoteState = (props) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": localStorage.getItem("token"),
+        "auth-token": localStorage.getItem("token")||sessionStorage.getItem("token"),
       },
       // body: JSON.stringify({ title, description, tag }),
     });
@@ -30,7 +30,8 @@ export const NoteState = (props) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": localStorage.getItem("token"),
+        "auth-token":
+          localStorage.getItem("token") || sessionStorage.getItem("token"),
       },
       body: JSON.stringify({ title, description, tag }),
     });
@@ -47,7 +48,8 @@ export const NoteState = (props) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": localStorage.getItem("token"),
+        "auth-token":
+          localStorage.getItem("token") || sessionStorage.getItem("token"),
       },
       body: JSON.stringify({ title, description, tag }),
     });
@@ -66,7 +68,8 @@ export const NoteState = (props) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": localStorage.getItem("token"),
+        "auth-token":
+          localStorage.getItem("token") || sessionStorage.getItem("token"),
       },
       body: JSON.stringify({ check }),
     });
@@ -84,7 +87,8 @@ export const NoteState = (props) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": localStorage.getItem("token"),
+        "auth-token":
+          localStorage.getItem("token") || sessionStorage.getItem("token"),
       },
     });
     const newNotes = notes.filter((note) => {
@@ -96,18 +100,19 @@ export const NoteState = (props) => {
   // Handle Alert
   const [alert, setAlert] = useState(false);
   const [alertMsg, setAlertMsg] = useState("");
-  const [alertType, setAlertType] = useState();
+  const [alertType, setAlertType] = useState("success");
 
-  const handleAlert = async (Msg, Type) => {
-    setAlert(true);
-    await setAlertMsg(Msg);
-    await setAlertType(Type);
-    // console.log(Type);
-    // console.log(alertType);
-    setTimeout(() => {
-      setAlert(false);
-    }, 10);
-  };
+ const handleAlert = (Msg, Type) => {
+   console.log("Setting alert state:", { Msg, Type });
+   setAlert(true);
+   setAlertMsg(Msg);
+   setAlertType(Type);
+
+   setTimeout(() => {
+     setAlert(false);
+   }, 10);
+ };
+
 
   return (
     <NoteContext.Provider
