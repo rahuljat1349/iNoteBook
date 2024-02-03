@@ -14,7 +14,7 @@ export default function Login() {
   const [check, setCheck] = useState(true);
 
   useEffect(() => {
-    if (localStorage.getItem("token")||sessionStorage.getItem("token")) {
+    if (localStorage.getItem("token") || sessionStorage.getItem("token")) {
       navigate("/");
       handleAlert("You are already logged in.", "success");
     }
@@ -35,9 +35,9 @@ export default function Login() {
     try {
       if (response.ok) {
         const json = await response.json();
-       check
-         ? localStorage.setItem("token", json.authToken)
-         : sessionStorage.setItem("token", json.authToken);
+        check
+          ? localStorage.setItem("token", json.authToken)
+          : sessionStorage.setItem("token", json.authToken);
         navigate("/Home");
         handleAlert("Logged in successfully.", "success");
       } else {
@@ -67,7 +67,7 @@ export default function Login() {
             value={credentials.email}
             name="email"
             id="email"
-            className="p-2 focus:outline-blue-500 duration-200 rounded-md font-semibold bg-slate-500 outline-none "
+            className="p-3 focus:outline-blue-500 duration-200 rounded-md font-semibold bg-slate-500 outline-none "
             placeholder="Enter Your Email"
             required
             type="email"
@@ -80,7 +80,7 @@ export default function Login() {
               value={credentials.password}
               name="password"
               id="password"
-              className="p-2 w-full focus:outline-blue-500 duration-200 rounded-md font-semibold bg-slate-500 outline-none "
+              className="p-3 w-full focus:outline-blue-500 duration-200 rounded-md font-semibold bg-slate-500 outline-none "
               placeholder="Enter Your Password"
               required
               type={password ? "password" : "text"}
@@ -116,7 +116,7 @@ export default function Login() {
           </div>
           <button
             type="submit"
-            className="p-2 duration-200 hover:bg-blue-700 rounded-md font-semibold bg-blue-500 outline-none "
+            className="p-3 duration-200 hover:bg-blue-700 rounded-md font-semibold bg-blue-500 outline-none "
           >
             Continue
           </button>

@@ -73,7 +73,7 @@ export default function SignUp() {
             value={credentials.email}
             name="email"
             id="email"
-            className="p-2 focus:outline-blue-500 duration-200  rounded-md  font-semibold bg-slate-500 outline-none "
+            className="p-3 focus:outline-blue-500 duration-200  rounded-md  font-semibold bg-slate-500 outline-none "
             placeholder="Enter Your Email"
             required
             type="email"
@@ -85,7 +85,7 @@ export default function SignUp() {
             value={credentials.name}
             name="name"
             id="name"
-            className="p-2 focus:outline-blue-500 duration-200  rounded-md  font-semibold bg-slate-500 outline-none "
+            className="p-3 focus:outline-blue-500 duration-200  rounded-md  font-semibold bg-slate-500 outline-none "
             placeholder="Enter Your Full Name"
             required
             type="text"
@@ -98,7 +98,7 @@ export default function SignUp() {
               value={credentials.password}
               name="password"
               id="password"
-              className="p-2 focus:outline-blue-500 duration-200  w-full rounded-md font-semibold bg-slate-500 outline-none "
+              className="p-3 focus:outline-blue-500 duration-200  w-full rounded-md font-semibold bg-slate-500 outline-none "
               placeholder="Create a Password"
               required
               type={password ? "password" : "text"}
@@ -130,7 +130,7 @@ export default function SignUp() {
           </div>
           <button
             type="submit"
-            className="p-2 duration-200 hover:bg-blue-700 rounded-md  font-semibold bg-blue-500 outline-none "
+            className="p-3 duration-200 hover:bg-blue-700 rounded-md  font-semibold bg-blue-500 outline-none "
           >
             Create Account
           </button>
