@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Button from "@mui/joy/Button";
 import Skeleton from "@mui/material/Skeleton";
 import Box from "@mui/material/Box";
+const url = import.meta.env.VITE_API_URL;
 
 import noteContext from "../context/noteContext";
 
@@ -18,7 +19,7 @@ export default function Profile() {
   });
   const getUserInfo = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/auth/getuser`, {
+      const response = await fetch(`${url}/api/auth/getuser`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
