@@ -4,10 +4,9 @@ import { useState } from "react";
 import NoteContext from "./noteContext";
 
 const initialNotes = [];
-
+const url = import.meta.env.VITE_API_URL;
 export const NoteState = (props) => {
   const [notes, setNotes] = useState(initialNotes);
-  const url = "http://localhost:8000";
 
   // feth all notes
   const getNotes = async () => {

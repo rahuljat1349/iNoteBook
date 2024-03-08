@@ -4,6 +4,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import noteContext from "../context/noteContext";
 import AlertBar from "../Home/Alert";
+const url = import.meta.env.VITE_API_URL;
 
 export default function Login() {
   const context = useContext(noteContext);
@@ -22,7 +23,7 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(`http://localhost:8000/api/auth/login/`, {
+    const response = await fetch(`${url}/api/auth/login/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
