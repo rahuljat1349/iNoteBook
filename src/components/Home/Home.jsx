@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import AlertBar from "./Alert";
 
 import NotesContainer from "./NotesContainer";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+    let navigate = useNavigate();
+
     useEffect(() => {
       if (localStorage.getItem("token") || sessionStorage.getItem("token")) {
         getNotes();
