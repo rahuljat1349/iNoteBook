@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AlertBar from "./Alert";
 
 import NotesContainer from "./NotesContainer";
