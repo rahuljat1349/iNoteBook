@@ -7,16 +7,7 @@ export default function NotesContainer({}) {
   let navigate = useNavigate();
   const context = useContext(noteContext);
   const { notes, getNotes, editNote, addNote } = context;
-  useEffect(() => {
-      console.log("NotesContainer useEffect - Start");
-    if (localStorage.getItem("token")||sessionStorage.getItem("token")) {
-      getNotes();
-    } else {
-      navigate("/login");
-      console.log("not getting token");
-    }
-      console.log("NotesContainer useEffect - End");
-  },[] );
+
 
   return (
     <>
