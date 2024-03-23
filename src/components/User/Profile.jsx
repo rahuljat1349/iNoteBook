@@ -7,10 +7,11 @@ const url = import.meta.env.VITE_API_URL;
 import noteContext from "../context/noteContext";
 
 import Deletemodal from "../Home/Deletemodal";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
   const [isLoading, setIsLoading] = useState(true);
-
+  const navigate = useNavigate()
   const context = useContext(noteContext);
   const { handleAlert } = context;
   const [credentials, setCredentials] = useState({
