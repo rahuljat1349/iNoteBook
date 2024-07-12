@@ -102,7 +102,6 @@ export const NoteState = (props) => {
   const [alertType, setAlertType] = useState("success");
 
  const handleAlert = (Msg, Type) => {
-   console.log("Setting alert state:", { Msg, Type });
    setAlert(true);
    setAlertMsg(Msg);
    setAlertType(Type);

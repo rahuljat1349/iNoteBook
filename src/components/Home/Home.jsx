@@ -1,11 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AlertBar from "./Alert";
+import noteContext from "../context/noteContext";
 
 import NotesContainer from "./NotesContainer";
 import { useNavigate } from "react-router-dom";
 
 export default function Home() {
     let navigate = useNavigate();
+    const context = useContext(noteContext)
+    const {getNotes} = context; 
 
     useEffect(() => {
       if (localStorage.getItem("token") || sessionStorage.getItem("token")) {
