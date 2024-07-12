@@ -17,6 +17,8 @@ export default function SignUp() {
   });
   const [password, showPassword] = useState(true);
   const [check, setCheck] = useState(true);
+    const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     if (localStorage.getItem("token")||sessionStorage.getItem("token")) {
       navigate("/");
@@ -26,6 +28,7 @@ export default function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     const response = await fetch(`${url}/api/auth/signup/`, {
       method: "POST",
       headers: {
@@ -48,6 +51,7 @@ export default function SignUp() {
         handleAlert("Created account successfully.", "success");
       } else if (response.status == 409) {
         handleAlert("Email already exists", "warning");
+        setLoading(false)
       }
     } catch (error) {
       console.error("Error:", error);
@@ -130,10 +134,11 @@ export default function SignUp() {
             </label>
           </div>
           <button
+          disabled={loading}
             type="submit"
-            className="p-3 duration-200 hover:bg-blue-700 rounded-md  font-semibold bg-blue-500 outline-none "
+            className="p-3 duration-200 disabled:bg-slate-400 hover:bg-blue-700 rounded-md  font-semibold bg-blue-500 outline-none "
           >
-            Create Account
+            {loading?"Please wait..":"Create Account"}
           </button>
         </form>
         <p>

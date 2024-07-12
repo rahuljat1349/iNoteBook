@@ -13,6 +13,7 @@ export default function Login() {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [password, showPassword] = useState(true);
   const [check, setCheck] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("token") || sessionStorage.getItem("token")) {
@@ -23,6 +24,7 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     const response = await fetch(`${url}/api/auth/login/`, {
       method: "POST",
       headers: {
@@ -37,15 +39,16 @@ export default function Login() {
       if (response.ok) {
         const json = await response.json();
         check
-          ? localStorage.setItem("token", json.authToken)
-          : sessionStorage.setItem("token", json.authToken);
+        ? localStorage.setItem("token", json.authToken)
+        : sessionStorage.setItem("token", json.authToken);
         navigate("/Home");
         handleAlert("Logged in successfully.", "success");
       } else {
         handleAlert("Invalid email or password.", "error");
+        setLoading(false)
       }
     } catch (error) {
-      console.error("Error:", error);
+      
     }
   };
   const onChange = (e) => {
@@ -93,7 +96,7 @@ export default function Login() {
                   return !value;
                 });
               }}
-              className=" -ml-10 font-semibold bg-slate-500 outline-none "
+              className="-ml-10 font-semibold bg-slate-500 outline-none "
             >
               {password ? <VisibilityIcon /> : <VisibilityOffIcon />}
             </button>
@@ -116,10 +119,11 @@ export default function Login() {
             </a>
           </div>
           <button
+            disabled={loading}
             type="submit"
-            className="p-3 duration-200 hover:bg-blue-700 rounded-md font-semibold bg-blue-500 outline-none "
+            className="p-3 duration-200 disabled:bg-slate-400 hover:bg-blue-700 rounded-md font-semibold bg-blue-500 outline-none "
           >
-            Continue
+            {loading?"Please wait..":"Continue"}
           </button>
         </form>
         <p>
